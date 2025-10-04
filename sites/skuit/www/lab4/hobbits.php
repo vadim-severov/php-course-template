@@ -7,8 +7,8 @@
    $names = implode(", ",  $party);
    $countParty = count($party);
    $transports = ["лошадь", "осёл", "повозка", "нет транспорта"];
-   $myTransport = rand(0,  $transports-1);
-
+   $myTransport = rand(0,  count($transports)-1);
+   $transport = $transports[$myTransport];
 
    ?>
 
@@ -16,3 +16,11 @@
    <div class='block'>
       В поход отправяться <?= $countParty?> хоббитов: <?= $names?><br>
    </div> 
+
+   <div class='block'>
+      <?if ($transport === 'нет транспорта') {?>
+         К сожалению, транспорта нет. Хоббитам придётся идти пешком!
+      <?} else {?>
+         Хоббиты нашли транспорт: <?=$transport?>
+      <?}?>
+   </div>
