@@ -9,7 +9,10 @@
    $transports = ["лошадь", "осёл", "повозка", "нет транспорта"];
    $myTransport = rand(0,  count($transports)-1);
    $transport = $transports[$myTransport];
-
+   $allSupplies = ['лембас', 'яблоки', 'грибы', 'мёд', 'сыр', 'сало', 'копчёная рыба'];
+   $supplies = rand(2,6);
+   shuffle($allSupplies);
+   $supplies = array_slice($allSupplies, 0, $supplies);
    ?>
 
 
@@ -23,4 +26,11 @@
       <?} else {?>
          Хоббиты нашли транспорт: <?=$transport?>
       <?}?>
+   </div>
+
+   <div class='block'>
+      Собрали припасы:<br>
+      <?foreach ($supplies as $sipply) {
+         echo("- $sipply <br>");
+      }?>
    </div>
