@@ -1,5 +1,13 @@
 <?php
-
+$jsonFile =__DIR__ . '/books_storage.json';
+if (!file_exists($jsonFile)) {
+    die("Файл books_storage.json не найден");
+}
+$jsonData = file_get_contents($jsonFile);
+$books = json_decode($jsonData, true);
+if ($books === null) {
+    die("Ошибка при чтение JSON:" . json_last_error_msg());
+}
 $book = [];
 $bookName = "Мёртвые Души";
 $bookAuthor = "Николай Гоголь";
@@ -54,17 +62,22 @@ $studentName = "Северов Вадим";
 </head>
 <body>
 
+
+
 <header>
     <h2>Книжный каталог</h2>
     <p>Студент: <?php echo $studentName; ?></p>
 </header>
 <main>
-    <h1><?php echo $bookName; ?></h1>
-
-    <p><strong>Автор:</strong> <?php echo $bookAuthor; ?></p>
-    <p><strong>Год издания:</strong> <?php echo $bookYear; ?></p>
-
-    <p><?php echo $bookDescription; ?></p>
+    <h1>Список книг</h1>
+    <?php foreach ($books as $book ): ?>
+        <h2>
+            <a href="book_detail.php?id=<?php echo $book['id']; ?>"><?php echo $book['name']; ?></a>
+        </h2>
+        <p><strong>Автор:</strong> <?php echo $book['author']; ?></p>
+        <p><strong>Год издания:</strong> <?php echo $book['year']; ?></p>
+        <hr>
+    <?php endforeach; ?>
 </main>
 
 <footer>
@@ -73,3 +86,4 @@ $studentName = "Северов Вадим";
 
 </body>
 </html>
+

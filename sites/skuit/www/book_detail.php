@@ -1,10 +1,34 @@
 <?php
+$jsonFile = __DIR__ . '/books_storage.json';
+   if (!file_exists($jsonFile)) {
+    die("Файл books_storage.json не найден");
+}
+$jsonData = file_get_contents($jsonFile);
+$books = json_decode($jsonData, true);
+if ($books === null) {
+    die("Ошибка при чтение JSON:" . json_last_error_msg());
+}
+if (!isset($_GET['id'])) {
+    die("Не указан ID книги!");
+}
+$bookId = (int)$_GET['id'];
+$book = null;
+foreach ($books as $b) {
+    if ($b['id'] === $bookId) {
+        $book = $b;
+        break;
+    }
+}
 
-$book = [];
-$bookName = "Мёртвые Души";
-$bookAuthor = "Николай Гоголь";
-$bookYear = 1842;
-$bookDescription = "Роман-поэма о прохождениях Павла Чичикова";
+if ($book === null) {
+    die("Книга с ID $bookId не найдена!");
+} else {
+    $bookName = $book['name'];
+$bookAuthor = $book['author'];
+$bookYear = $book['year'];
+$bookDescription = $book['description'];
+}
+
 $studentName = "Северов Вадим";
 
 ?>
