@@ -45,6 +45,40 @@ $grades = [4, 5, 3, 5, 4];
     $averageGrade = array_sum($grades) / count($grades);
     ?>
 
-    <p>Год рождения: <span class="resuld"><?= $birthYear ?></span></p>
+    <p>Год рождения: <span class="result"><?= $birthYear ?></span></p>
     <div class="hint">// 2025 - возраст = <?= $birthYear ?></div>
     
+    <p>Возраст через 5 лет: <span class="result" ><?= $futureAge ?></span></p>
+    <div class="hint">// возраст + 5 <?= $futureAge ?></div>
+
+    <p>Рост в дюймах: <span class="result" ><?= round($heihtInches, 2) ?></span></p>
+    <div class="hint">// рост в см / 2.54 <?= round($heihtInches, 2) ?></div>
+
+    <p>Рост в метрах: <span class="result" ><?= round($heihtMeters, 2) ?></span></p>
+    <div class="hint">// рост в см / 100  <?= round($heihtMeters, 2) ?></div>
+
+    <p>Средний балл: <span class="result" ><?= round($averageGrade, 2) ?></span></p>
+    <div class="hint">// array_sum($grades / count($grades)) <?= round($averageGrade, 2) ?></div>
+</div>
+
+<div class="section">
+    <h2>3. Операция со строками</h2>
+    <?php 
+    $greeting = "Привет, " . $name . "!";
+    $ageInfo = "Тебе $age лет";
+    $upperName = strtoupper($name);
+    $nameLength = strlen($name);
+    ?>
+
+    <p>Приветствие: <span class="resilt" ><?= $greeting ?></span></p>
+    <div class="hint">// "Привет, " . $name . "!" </div>
+
+    <p>Информация: <span class="resilt" ><?= $ageInfo ?></span></p>
+    <div class="hint">// интерполяция строк: "Тебе $age лет" </div>
+
+    <p>Имя в верхнем регистре: <span class="resilt" ><?= $upperName ?></span></p>
+    <div class="hint">// strtoupper($name) - преобразует строку в верхний регистр </div>
+    
+    <p>Длина имени: <span class="resilt" ><?= $nameLength ?></span></p>
+    <div class="hint">// strlen($name) - возврощает длину строки </div>
+</div>
